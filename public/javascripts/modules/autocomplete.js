@@ -1,5 +1,4 @@
 function autocomplete(input, latInput, lngInput) {
-  console.log('a');
   if (!input) return;
 
   const dropdown = new google.maps.places.Autocomplete(input);
