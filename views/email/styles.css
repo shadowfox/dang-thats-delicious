@@ -57,7 +57,7 @@ table {
 ------------------------------------- */
 .main {
   background: #fff;
-  border-top:20px solid #fff200;
+  border-top:20px solid #FFC40E;
   width: 100%; }
 
 .wrapper {
@@ -112,7 +112,7 @@ ol {
     margin-left: 5px; }
 
 a {
-  color: #fff200;
+  color: #FFC40E;
   text-decoration: underline; }
 
 /* -------------------------------------
@@ -131,10 +131,10 @@ a {
     text-align: center; }
   .btn a {
     background-color: #ffffff;
-    border: solid 1px #fff200;
+    border: solid 1px #FFC40E;
     border-radius: 5px;
     box-sizing: border-box;
-    color: #fff200;
+    color: #FFC40E;
     cursor: pointer;
     display: inline-block;
     font-size: 14px;
@@ -145,11 +145,11 @@ a {
     text-transform: capitalize; }
 
 .btn-primary table td {
-  background-color: #fff200; }
+  background-color: #FFC40E; }
 
 .btn-primary a {
-  background-color: #fff200;
-  border-color: #fff200;
+  background-color: #FFC40E;
+  border-color: #FFC40E;
   color: #3a3a3a; }
 
 /* -------------------------------------
