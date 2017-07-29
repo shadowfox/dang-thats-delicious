@@ -102,4 +102,22 @@ exports.updateStore = async (req, res) => {
     // Redirect them to the store
     req.flash('success', `Successfully updated <a href="/stores/${store.slug}">${store.name}</a>`);
     res.redirect(`/stores/${store._id}/edit`);
-  }
+}
+
+exports.getStoreByTag = async (req, res) => {
+  const activeTag = req.params.tag;
+  const tagQuery = activeTag || { $exists: true };
+
+  const tagsPromise = Store.getTagsList();
+  const storesPromise = Store.find({ tags: tagQuery });
+
+  // Wait for all promises
+  const [tags, stores] = await Promise.all([tagsPromise, storesPromise]);
+
+  res.render('tag', {
+    title: 'Tags',
+    tags,
+    stores,
+    activeTag
+  });
+}
