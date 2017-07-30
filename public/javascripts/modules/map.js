@@ -2,15 +2,18 @@ import axios from 'axios';
 import { $ } from './bling';
 
 const mapOptions = {
-  center: { lat: -24, lng: 140 },
+  center: { lat: 43.2, lng: -79.8 },
   zoom: 2
 };
 
-function loadPlaces(map, lat = -24, lng = 140) {
+function loadPlaces(map, lat = 43.2, lng = -79.8) {
   axios.get(`/api/stores/near?lat=${lat}&lng=${lng}`)
     .then(res => {
       const places = res.data;
-      if (!places.length) return;
+      if (!places.length) {
+        alert('No places found!');
+        return;
+      }
 
       // Create a bounds so all markers can fit inside map
       const bounds = new google.maps.LatLngBounds();
