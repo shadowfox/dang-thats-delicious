@@ -27,7 +27,7 @@ exports.homePage = (req, res) => {
 exports.getStoreBySlug = async (req, res) => {
   const store = await Store.findOne({ slug: req.params.slug })
     // Fill in the user object based on the author id field on the store
-    .populate('author');
+    .populate('author reviews');
   
   // Handle 404
   if (!store) {

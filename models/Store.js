@@ -39,6 +39,10 @@ const storeSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   }
+}, {
+  // Eager load virtuals
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true },
 });
 
 // Define our indexes
@@ -74,6 +78,12 @@ storeSchema.statics.getTagsList = function() {
     { $group: { _id: '$tags', count: { $sum: 1 } } },
     { $sort: { count: -1 } }
   ]);
-}
+};
+
+storeSchema.virtual('reviews', {
+  ref: 'Review',
+  localField: '_id', // Field on the store
+  foreignField: 'store' // Field on the review
+});
 
 module.exports = mongoose.model('Store', storeSchema);
