@@ -9,4 +9,6 @@ block content
     .stores
       each store in stores
         +storeCard(store)
+      else
+        p No stores yet :(
     +pagination(page, pages, count)
