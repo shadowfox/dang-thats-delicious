@@ -4,6 +4,7 @@ const multer = require('multer');
 const jimp = require('jimp');
 const uuid = require('uuid');
 const User = mongoose.model('User');
+const helpers = require('../helpers');
 
 const multerOptions = {
   storage: multer.memoryStorage(),
@@ -66,7 +67,7 @@ exports.createStore = async (req, res) => {
   req.body.author = req.user._id;
   const store = await (new Store(req.body)).save();
   req.flash('success', `Successfully created ${store.name}. Care to leave a review?`);
-  res.redirect(`/store/${store.slug}`);
+  res.redirect(helpers.slug(store));
 }
 
 exports.getStores = async (req, res) => {
@@ -132,7 +133,7 @@ exports.updateStore = async (req, res) => {
     }).exec();
 
     // Redirect them to the store
-    req.flash('success', `Successfully updated <a href="/stores/${store.slug}">${store.name}</a>`);
+    req.flash('success', `Successfully updated <a href="${helpers.slug(store)}">${store.name}</a>`);
     res.redirect(`/stores/${store._id}/edit`);
 }
 

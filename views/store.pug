@@ -6,9 +6,9 @@ include mixins/_review
 block content
   .single
     .single__hero
-      img.single__image(src=`/uploads/${store.photo || 'store.png'}`)
+      img.single__image(src=h.storePhoto(store))
       h2.title.title--single
-        a(href=`/stores/${store.slug}`) #{store.name}
+        a(href=h.slug(store)) #{store.name}
   
   .single__details.inner
     img.single__map(src=h.staticMap(store.location.coordinates))

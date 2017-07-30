@@ -17,6 +17,12 @@ exports.staticMap = ([lng, lat]) => `https://maps.googleapis.com/maps/api/static
 // inserting an SVG
 exports.icon = (name) => fs.readFileSync(`./public/images/icons/${name}.svg`);
 
+// Generate a store URL
+exports.slug = (store) => `/store/${store.slug}`;
+
+// Generate a store photo with a default fallback
+exports.storePhoto = (store) => `/uploads/${store.photo || 'store.png'}`;
+
 // Some details about the site
 exports.siteName = `Now That's Delicious!`;
 
