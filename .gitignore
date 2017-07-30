@@ -2,9 +2,9 @@
 .idea
 !*.gitkeep
 node_modules/
-public/dist/
-public/uploads/*
-!public/uploads/store.png
+#public/dist/
+#public/uploads/*
+#!public/uploads/store.png
 *.log
 variables.env
 variables.env.now
