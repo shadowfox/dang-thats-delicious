@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const promisify = require('es6-promisify');
+const mail = require('../handlers/mail');
+const helpers = require('../helpers');
 
 exports.loginForm = (req, res) => {
   res.render('login', { title: 'Login' });
@@ -43,6 +45,15 @@ exports.register = async (req, res, next) => {
   // Promisify the register method
   const register = promisify(User.register, User);
   await register(user, req.body.password);
+
+  const addStoreUrl = `http://${req.headers.host}/add`;
+  await mail.send({
+    user,
+    subject: 'Thanks for signing up',
+    filename: 'welcome',
+    addStoreUrl,
+    siteName: helpers.siteName
+  });
 
   next(); // pass to authController.login
 };

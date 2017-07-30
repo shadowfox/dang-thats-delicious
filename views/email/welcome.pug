@@ -1,0 +1,6 @@
+extends email-layout
+
+block content
+  h2 Thanks for signing up
+  p Hey #{user.name}, thanks for signing up to #{siteName}
+  +button(addStoreUrl, 'Add your first store →')
