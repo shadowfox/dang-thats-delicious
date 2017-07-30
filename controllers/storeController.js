@@ -70,13 +70,34 @@ exports.createStore = async (req, res) => {
 }
 
 exports.getStores = async (req, res) => {
+  const page = req.params.page || 1;
+  const limit = 8;
+  const skip = (page * limit) - limit;
 
-  // Query DB for all stores
-  const stores = await Store.find();
+  const storesPromise = Store
+    .find()
+    .skip(skip)
+    .limit(limit)
+    .sort({ created: 'desc' });
+
+  const countPromise = Store.count();
+
+  const [stores, count] = await Promise.all([storesPromise, countPromise]);
+  const pages = Math.ceil(count / limit);
+
+  if (!stores.length && skip) {
+    req.flash('info', `Hey! You asked for page ${page}
+      but that doesn't exist. I've put you on page ${pages}`);
+    res.redirect(`/stores/page/${pages}`);
+    return;
+  }
 
   res.render('stores', {
     title: 'Stores',
-    stores
+    stores,
+    count,
+    pages,
+    page
   });
 }
 
