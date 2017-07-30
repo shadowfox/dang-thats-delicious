@@ -29,4 +29,4 @@ mixin storeForm(store = {})
           input(type="checkbox", id=choice value=choice name="tags" checked=(tags.includes(choice)))
           label(for=choice) #{choice}
 
-    input(type="submit" value="Add Store" class="button")
+    input(type="submit" value=`${store._id ? 'Edit Store' : 'Add Store'}` class="button")
