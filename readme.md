@@ -1,6 +1,14 @@
-## What is this?
+## Dang That's Delicious
 
-Just you wait folks!
+Completed NodeJS tutorial from courses.wesbos.com with my own bits and pieces thrown in
+
+## Running for development
+
+Simply run the following command:
+
+```bash
+npm run dev
+```
 
 ## Sample Data
 
